@@ -1,16 +1,14 @@
-import { mailTrapClient, sender } from "./mailtrap.config.js";
+import { transporter } from "./mailtrap.config.js";
 import { PASSWORD_RESET_REQUEST_TEMPLATE, PASSWORD_RESET_SUCCESS_TEMPLATE, VERIFICATION_EMAIL_TEMPLATE} from "./emailTemplates.js";
 
 export const sendVerificationEmail = async (email, verificationToken) => {
-    const recipient = [{ email }];
 
     try {
-        const response = await mailTrapClient.send({
-            from: sender,
-            to: recipient,
+            const response = await transporter.sendMail({
+            from: `"Hejazi" <${process.env.GMAIL_USER}>`,
+            to: email,
             subject: "Verify Your Email",
-            html: VERIFICATION_EMAIL_TEMPLATE.replace("{verificationCode}", verificationToken),
-            category: "Email Verification"
+            html: VERIFICATION_EMAIL_TEMPLATE.replace("{verificationCode}", verificationToken)
         })
 
         console.log(`Verification email sent to ${email}`, response);
@@ -24,12 +22,11 @@ export const sendVerificationEmail = async (email, verificationToken) => {
 }
 
 export const sendWelcomeEmail = async (email, name) => {
-    const recipient = [{ email }];
 
     try {
         const response = await mailTrapClient.send({
-            from: sender,
-            to: recipient,
+            from: `"Hejazi" <${process.env.GMAIL_USER}>`,
+            to: email,
             template_uuid: "06fdcc36-2f48-4e91-a0a7-8fa64a9f972f",
             template_variables: {
                 "name": name
@@ -43,14 +40,13 @@ export const sendWelcomeEmail = async (email, name) => {
 }
 
 export const sendResetPasswordEmail = async (email, resetURL) =>{
-    const recipient =[{email}];
+    
     try {
         const response = await mailTrapClient.send({
-            from: sender,
-            to: recipient,
+            from: `"Hejazi" <${process.env.GMAIL_USER}>`,
+            to: email,
             subject : "Reset Your Password",
-            html: PASSWORD_RESET_REQUEST_TEMPLATE.replace("{resetURL}", resetURL),
-            category: "Password Reset"
+            html: PASSWORD_RESET_REQUEST_TEMPLATE.replace("{resetURL}", resetURL)
         })
 
         console.log(`Password reset email sent to ${email}`, response);
@@ -60,14 +56,13 @@ export const sendResetPasswordEmail = async (email, resetURL) =>{
 }
 
 export const sendResetSuccessfullEmail = async (email)=>{
-    const recipient =[{email}];
+   
     try {
         const response = await mailTrapClient.send({
-            from: sender,
-            to: recipient,
+            from: `"Hejazi" <${process.env.GMAIL_USER}>`,
+            to: email,
             subject : "Password Reset Successfull",
             html: PASSWORD_RESET_SUCCESS_TEMPLATE,
-            category: "Password Reset Successfull"
         })
 
         console.log(`Password reset successfull email sent to ${email}`, response);
