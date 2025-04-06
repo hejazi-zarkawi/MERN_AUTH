@@ -13,8 +13,18 @@ export const signup = async (req, res) => {
         }
         const userAlreadyExists = await User.findOne({ email });
         if (userAlreadyExists) {
-            return res.status(400).json({ success: false, message: 'User already exists' });
-        }
+            if (userAlreadyExists.isVerified) {
+              return res.status(400).json({ success: false, message: 'User already exists' });
+            } else {
+              // User exists but not verified — regenerate verification token
+              userAlreadyExists.verificationToken = Math.floor(100000 + Math.random() * 900000);
+              userAlreadyExists.verificationTokenExpiresAt = Date.now() + 10 * 60 * 1000;
+              await userAlreadyExists.save();
+              
+              await sendVerificationEmail(userAlreadyExists.email, userAlreadyExists.verificationToken);
+              return res.status(200).json({ success: true, message: 'Verification email resent' });
+            }
+          }
         const verificationToken = Math.floor(100000 + Math.random() * 900000);
         const hashedPassword = await bcrypt.hash(password, 12);
         const user = new User({
