@@ -1,6 +1,6 @@
 import { Routes,Route } from "react-router-dom"
 import FloatingShape from "./component/FloatingShape"
-import SignUpPage from "./pages/signUpPage"
+import SignUpPage from "./pages/SignUpPage"
 import LoginPage from "./pages/LoginPage"
 import VerificationEmailPage from "./pages/VerificationEmailPage"
 import { Toaster } from "react-hot-toast"
