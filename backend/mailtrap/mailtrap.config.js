@@ -9,7 +9,7 @@ export const mailTrapClient = new MailtrapClient({
 });
 
 export const sender = {
-  email: "hello@demomailtrap.co",
+  email: "https://mern-auth-5k0z.onrender.com",
   name: "Hejazi",
 };
 
