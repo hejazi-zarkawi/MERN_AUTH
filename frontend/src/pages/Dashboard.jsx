@@ -1,12 +1,14 @@
 import { motion } from "framer-motion";
 import { useAuthStore } from "../store/AuthStore";
 import { formatDate } from "../utils/date";
+import toast from "react-hot-toast";
 
 const DashboardPage = () => {
 	const { user, logout } = useAuthStore();
 
 	const handleLogout = async() => {
 		await logout();
+		toast.success("Logged out successfully!!!")
 	};
 	return (
 		<motion.div

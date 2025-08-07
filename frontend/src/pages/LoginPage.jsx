@@ -9,6 +9,7 @@ import { useState } from 'react';
 import { IoIosEye } from "react-icons/io";
 import { IoIosEyeOff } from "react-icons/io";
 import { useAuthStore } from '../store/AuthStore';
+import toast from "react-hot-toast";
 const LoginPage = () => {
 
     const navigate = useNavigate
@@ -22,7 +23,9 @@ const LoginPage = () => {
         e.preventDefault();
         try {
             await login(email, password);
+            toast.success("Logged in successfully!!!")
             navigate("/")
+            
         } catch (error) {
             console.log(error);
         }

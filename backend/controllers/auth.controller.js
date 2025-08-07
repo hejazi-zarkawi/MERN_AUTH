@@ -20,6 +20,8 @@ export const signup = async (req, res) => {
               userAlreadyExists.verificationToken = Math.floor(100000 + Math.random() * 900000);
               userAlreadyExists.verificationTokenExpiresAt = Date.now() + 10 * 60 * 1000;
               await userAlreadyExists.save();
+
+              generateAndSetCookie(res, userAlreadyExists._id);
               
               await sendVerificationEmail(userAlreadyExists.email, userAlreadyExists.verificationToken);
               return res.status(200).json({ success: true, message: 'Verification email resent' });
