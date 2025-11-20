@@ -106,7 +106,7 @@ export const WELCOME_EMAIL_TEMPLATE = `
 
   <!-- Header -->
   <div style="background: linear-gradient(to right, #4CAF50, #45a049); padding: 25px; text-align: center; border-radius: 5px 5px 0 0;">
-    <h1 style="color: white; margin: 0; font-size: 28px;">Welcome to NovaOutlook</h1>
+    <h1 style="color: white; margin: 0; font-size: 28px;">Welcome to MERN Auth</h1>
   </div>
 
   <!-- Body -->
