@@ -24,7 +24,7 @@ export const sendVerificationEmail = async (email, verificationToken) => {
 export const sendWelcomeEmail = async (email, name) => {
 
     try {
-        const response = await mailTrapClient.send({
+        const response = await transporter.sendMail({
             from: `"Hejazi" <${process.env.GMAIL_USER}>`,
             to: email,
             template_uuid: "06fdcc36-2f48-4e91-a0a7-8fa64a9f972f",
@@ -42,7 +42,7 @@ export const sendWelcomeEmail = async (email, name) => {
 export const sendResetPasswordEmail = async (email, resetURL) =>{
     
     try {
-        const response = await mailTrapClient.send({
+        const response = await transporter.sendMail({
             from: `"Hejazi" <${process.env.GMAIL_USER}>`,
             to: email,
             subject : "Reset Your Password",
@@ -58,7 +58,7 @@ export const sendResetPasswordEmail = async (email, resetURL) =>{
 export const sendResetSuccessfullEmail = async (email)=>{
    
     try {
-        const response = await mailTrapClient.send({
+        const response = await transporter.sendMail({
             from: `"Hejazi" <${process.env.GMAIL_USER}>`,
             to: email,
             subject : "Password Reset Successfull",
