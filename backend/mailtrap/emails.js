@@ -1,11 +1,11 @@
-import { transporter } from "./mailtrap.config.js";
-import { PASSWORD_RESET_REQUEST_TEMPLATE, PASSWORD_RESET_SUCCESS_TEMPLATE, VERIFICATION_EMAIL_TEMPLATE} from "./emailTemplates.js";
+import { resend, FROM } from "./mailtrap.config.js";
+import { WELCOME_EMAIL_TEMPLATE, PASSWORD_RESET_REQUEST_TEMPLATE, PASSWORD_RESET_SUCCESS_TEMPLATE, VERIFICATION_EMAIL_TEMPLATE } from "./emailTemplates.js";
 
 export const sendVerificationEmail = async (email, verificationToken) => {
 
     try {
-            const response = await transporter.sendMail({
-            from: `"Hejazi" <${process.env.GMAIL_USER}>`,
+        const response = await resend.emails.send({
+            from: FROM,
             to: email,
             subject: "Verify Your Email",
             html: VERIFICATION_EMAIL_TEMPLATE.replace("{verificationCode}", verificationToken)
@@ -24,13 +24,11 @@ export const sendVerificationEmail = async (email, verificationToken) => {
 export const sendWelcomeEmail = async (email, name) => {
 
     try {
-        const response = await transporter.sendMail({
-            from: `"Hejazi" <${process.env.GMAIL_USER}>`,
+        const response = await resend.emails.send({
+            from: FROM,
             to: email,
-            template_uuid: "06fdcc36-2f48-4e91-a0a7-8fa64a9f972f",
-            template_variables: {
-                "name": name
-            }
+            subject: "Welcome to Authentication Process!",
+            html: WELCOME_EMAIL_TEMPLATE.replace("{name}", name),
         })
 
         console.log(`Welcome email sent to ${email}`, response);
@@ -39,13 +37,13 @@ export const sendWelcomeEmail = async (email, name) => {
     }
 }
 
-export const sendResetPasswordEmail = async (email, resetURL) =>{
-    
+export const sendResetPasswordEmail = async (email, resetURL) => {
+
     try {
-        const response = await transporter.sendMail({
-            from: `"Hejazi" <${process.env.GMAIL_USER}>`,
+        const response = await resend.emails.send({
+            from: FROM,
             to: email,
-            subject : "Reset Your Password",
+            subject: "Reset Your Password",
             html: PASSWORD_RESET_REQUEST_TEMPLATE.replace("{resetURL}", resetURL)
         })
 
@@ -55,13 +53,13 @@ export const sendResetPasswordEmail = async (email, resetURL) =>{
     }
 }
 
-export const sendResetSuccessfullEmail = async (email)=>{
-   
+export const sendResetSuccessfullEmail = async (email) => {
+
     try {
-        const response = await transporter.sendMail({
-            from: `"Hejazi" <${process.env.GMAIL_USER}>`,
+        const response = await resend.emails.send({
+            from: FROM,
             to: email,
-            subject : "Password Reset Successfull",
+            subject: "Password Reset Successfull",
             html: PASSWORD_RESET_SUCCESS_TEMPLATE,
         })
 

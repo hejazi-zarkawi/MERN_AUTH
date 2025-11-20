@@ -93,3 +93,54 @@ export const PASSWORD_RESET_REQUEST_TEMPLATE = `
 </body>
 </html>
 `;
+
+export const WELCOME_EMAIL_TEMPLATE = `
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Welcome to NovaOutlook</title>
+</head>
+<body style="font-family: Arial, sans-serif; line-height: 1.6; color: #333; max-width: 600px; margin: 0 auto; padding: 20px;">
+
+  <!-- Header -->
+  <div style="background: linear-gradient(to right, #4CAF50, #45a049); padding: 25px; text-align: center; border-radius: 5px 5px 0 0;">
+    <h1 style="color: white; margin: 0; font-size: 28px;">Welcome to NovaOutlook</h1>
+  </div>
+
+  <!-- Body -->
+  <div style="background-color: #f9f9f9; padding: 25px; border-radius: 0 0 5px 5px; box-shadow: 0 2px 5px rgba(0,0,0,0.1);">
+    <p>Hello <strong>{name}</strong>,</p>
+
+    <p>Welcome aboard! 🎉 We're excited to have you as part of the Authentication community.</p>
+
+    <p>
+      You’ve successfully created your account. From now on, you can enjoy:
+    </p>
+
+    <ul style="padding-left: 20px;">
+      <li>Secure access to your dashboard</li>
+      <li>Faster authentication flow</li>
+      <li>Modern and seamless user experience</li>
+      <li>Exclusive updates and support</li>
+    </ul>
+
+    <p>
+      If you ever need help, feel free to reach out. Our team is here to assist you anytime.
+    </p>
+
+    <p style="margin-top: 25px;">
+      Best regards,<br/>
+      <strong>Authentication Team</strong>
+    </p>
+  </div>
+
+  <!-- Footer -->
+  <div style="text-align: center; margin-top: 20px; color: #888; font-size: 0.8em;">
+    <p>This is an automated message. Please do not reply.</p>
+  </div>
+
+</body>
+</html>
+`;
