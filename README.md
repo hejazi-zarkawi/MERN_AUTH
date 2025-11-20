@@ -75,7 +75,7 @@ npm start
 - `MONGO_URI` - MongoDB connection string
 - `JWT_SECRET` - Secret for JWT signing
 - `CLIENT_URL` - Frontend URL (e.g., http://localhost:5173)
-- `GMAIL_USER` and `GMAIL_APP_PASSWORD` - For sending emails via Gmail
+- `RESEND_API_KEY` and `EMAIL_FROM` - For sending emails via Resend API
 
 ## License
 
